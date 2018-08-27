@@ -86,7 +86,6 @@ class Gallery extends Component {
             { isModalShown && <Modal
                 item={currentSlides[current]}
                 closeModal={closeModal}
-                openModal={openModal}
             /> }
             <div className="Gallery__slides">
                 {current > 0 && <div className="Gallery__slide Gallery__slide-control">
