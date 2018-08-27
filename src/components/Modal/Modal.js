@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './Modal.css';
 import PropTypes from 'prop-types';
+import { escCode } from '../../consts';
 import { getFirstPhoto } from '../../utils';
 
 class Modal extends Component {
     static propTypes = {
-        openModal: PropTypes.func.isRequired,
         closeModal: PropTypes.func.isRequired,
         item: PropTypes.shape({
             attachments: PropTypes.arrayOf(PropTypes.object),
@@ -32,7 +32,7 @@ class Modal extends Component {
     handleEscPress = (event) => {
         const { closeModal } = this.props;
 
-        if (event.keyCode === 27) {
+        if (event.keyCode === escCode) {
             closeModal();
         }
     }
