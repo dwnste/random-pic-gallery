@@ -44,9 +44,13 @@ class Gallery extends Component {
             size,
         } = this.props;
 
-        const isHavingSlides = currentSlides.length > current + 1;
+        const hasSlides = currentSlides.length > current + 1;
 
-        return currentSlides.length && <div className="Gallery">
+        if (!currentSlides.length) {
+            return null;
+        }
+
+        return <div className="Gallery">
             { isModalShown && <Modal
                 item={currentSlides[current]}
                 isModalShown={isModalShown}
@@ -65,7 +69,7 @@ class Gallery extends Component {
                         onClick={toggleModal}
                     />
                 </div>
-                {isHavingSlides && <div className="Gallery__slide Gallery__slide-control">
+                {hasSlides && <div className="Gallery__slide Gallery__slide-control">
                     <Slide
                         slide={currentSlides[current + 1]}
                         onClick={() => onNextSlide(size)}
