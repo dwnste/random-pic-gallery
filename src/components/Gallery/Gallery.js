@@ -49,7 +49,7 @@ class Gallery extends Component {
             onNextSlide,
         } = this.props;
 
-        switch (event.keyCode) { // eslint-disable-line
+        switch (event.keyCode) {
         case leftArrowCode:
             event.preventDefault();
             onPrevSlide();
