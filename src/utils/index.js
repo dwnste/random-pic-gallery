@@ -5,6 +5,7 @@ import filterSlides from './filterSlides';
 import filterAttachments from './filterAttachments';
 import getFirstPhoto from './getFirstPhoto';
 import findIndex from './findIndex';
+import preloadSlides from './preloadSlides';
 
 export {
     parseResponse,
@@ -14,4 +15,5 @@ export {
     filterAttachments,
     getFirstPhoto,
     findIndex,
+    preloadSlides,
 };

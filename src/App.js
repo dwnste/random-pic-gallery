@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Gallery from './components/Gallery/Gallery';
 import getPosts from './api/api';
-import { filterSlides } from './utils';
+import { filterSlides, preloadSlides } from './utils';
 
 const gallerySize = 5;
 
@@ -29,25 +29,28 @@ class App extends Component {
 
     getSlides = (size, offset = 0, prevSlides = []) => getPosts(size, offset)
         .then((res) => {
-            const { isLoading } = this.state;
+            this.setState({ isLoading: true });
 
-            if (!isLoading) {
-                this.setState({ isLoading: true });
-            }
-
-            const newSlides = [...prevSlides, ...filterSlides(res)];
+            const newSlides = [
+                ...prevSlides,
+                ...filterSlides(res),
+            ];
 
             if (res.length === 0 || newSlides.length >= size) {
-                return {
-                    newSlides,
-                    offset: offset + res.length,
-                };
+                return preloadSlides(newSlides).then(() => {
+                    this.setState({
+                        isLoading: false,
+                        offset: offset + res.length,
+                    });
+
+                    return newSlides;
+                });
             }
 
             return this.getSlides(size, offset + res.length, newSlides);
         });
 
-    pushSlides = ({ newSlides, offset }) => {
+    pushSlides = (newSlides) => {
         const { slides } = this.state;
 
         this.setState({
@@ -55,8 +58,6 @@ class App extends Component {
                 ...slides,
                 ...newSlides,
             ],
-            offset,
-            isLoading: false,
         });
     }
 
