@@ -64,23 +64,25 @@ class App extends Component {
             isLoading,
         } = this.state;
 
-        const noMoreSlides = images.length === current + 1;
+        const nextSlide = current + 1;
+        const noMoreSlides = images.length === nextSlide;
+        const isPenultimateSlide = images.length === current + 2;
 
         if (isLoading || noMoreSlides) {
             return;
         }
 
-        if (images.length === current + 2) {
+        if (isPenultimateSlide) {
             this.getSlides(size, offset)
                 .then(this.pushSlides)
                 .then(() => {
                     this.setState({
-                        current: current + 1,
+                        current: nextSlide,
                     });
                 });
         } else {
             this.setState({
-                current: current + 1,
+                current: nextSlide,
             });
         }
     };
@@ -91,13 +93,15 @@ class App extends Component {
             isLoading,
         } = this.state;
 
+        const prevSlide = current - 1;
+
         if (isLoading) {
             return;
         }
 
-        if ((current - 1) >= 0) {
+        if (prevSlide >= 0) {
             this.setState({
-                current: current - 1,
+                current: prevSlide,
             });
         }
     };

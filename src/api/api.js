@@ -10,10 +10,10 @@ const defaultParams = {
 
 const get = url => fetchJsonp(url).then(res => res.json());
 
-const getImages = (size = 10, offset = 0) => {
+const getImages = (count = 10, offset = 0) => {
     const params = {
         ...defaultParams,
-        size,
+        count,
         offset,
     };
 
