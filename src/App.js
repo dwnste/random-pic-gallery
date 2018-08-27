@@ -8,7 +8,7 @@ const gallerySize = 5;
 
 class App extends Component {
     state = {
-        images: [],
+        slides: [],
         current: 0,
         offset: 0,
         isModalShown: false,
@@ -35,25 +35,25 @@ class App extends Component {
                 this.setState({ isLoading: true });
             }
 
-            const slides = [...prevSlides, ...filterSlides(res)];
+            const newSlides = [...prevSlides, ...filterSlides(res)];
 
-            if (res.length === 0 || slides.length >= size) {
+            if (res.length === 0 || newSlides.length >= size) {
                 return {
-                    slides,
+                    newSlides,
                     offset: offset + res.length,
                 };
             }
 
-            return this.getSlides(size, offset + res.length, slides);
+            return this.getSlides(size, offset + res.length, newSlides);
         });
 
-    pushSlides = ({ slides, offset }) => {
-        const { images } = this.state;
+    pushSlides = ({ newSlides, offset }) => {
+        const { slides } = this.state;
 
         this.setState({
-            images: [
-                ...images,
+            slides: [
                 ...slides,
+                ...newSlides,
             ],
             offset,
             isLoading: false,
@@ -63,14 +63,14 @@ class App extends Component {
     onNextSlide = (size) => {
         const {
             current,
-            images,
+            slides,
             offset,
             isLoading,
         } = this.state;
 
         const nextSlide = current + 1;
-        const noMoreSlides = images.length === nextSlide;
-        const isPenultimateSlide = images.length === current + 2;
+        const noMoreSlides = slides.length === nextSlide;
+        const isPenultimateSlide = slides.length === current + 2;
 
         if (isLoading || noMoreSlides) {
             return;
@@ -125,7 +125,7 @@ class App extends Component {
 
     render() {
         const {
-            images,
+            slides,
             current,
             isModalShown,
         } = this.state;
@@ -135,7 +135,7 @@ class App extends Component {
                 <Gallery
                     size={gallerySize}
                     current={current}
-                    currentSlides={images}
+                    currentSlides={slides}
                     isModalShown={isModalShown}
                     openModal={this.openModal}
                     closeModal={this.closeModal}
