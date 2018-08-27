@@ -5,17 +5,13 @@ import { getImages } from './api/api';
 import { filterSlides } from './utils';
 
 class App extends Component {
-    constructor(...props) {
-        super(...props);
-
-        this.state = {
-            images: [],
-            current: 0,
-            offset: 0,
-            isModalShown: false,
-            isLoading: false,
-        };
-    }
+    state = {
+        images: [],
+        current: 0,
+        offset: 0,
+        isModalShown: false,
+        isLoading: false,
+    };
 
     toggleModal = () => {
         const { isModalShown } = this.state;
