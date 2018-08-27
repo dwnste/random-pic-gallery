@@ -4,6 +4,8 @@ import Gallery from './components/Gallery/Gallery';
 import { getImages } from './api/api';
 import { filterSlides } from './utils';
 
+const gallerySize = 5;
+
 class App extends Component {
     state = {
         images: [],
@@ -123,7 +125,7 @@ class App extends Component {
         return <div className="App">
             <div className="App__gallery">
                 <Gallery
-                    size={7}
+                    size={gallerySize}
                     current={current}
                     currentSlides={images}
                     isModalShown={isModalShown}
