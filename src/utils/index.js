@@ -4,6 +4,7 @@ import getRandomItem from './getRandomItem';
 import filterSlides from './filterSlides';
 import filterAttachments from './filterAttachments';
 import getFirstPhoto from './getFirstPhoto';
+import findIndex from './findIndex';
 
 export {
     parseResponse,
@@ -12,4 +13,5 @@ export {
     filterSlides,
     filterAttachments,
     getFirstPhoto,
+    findIndex,
 };
