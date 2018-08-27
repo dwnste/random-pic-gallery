@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Controls from '../Controls';
 import Modal from '../Modal';
 import Slide from '../Slide';
+import Loader from '../Loader';
 import { rightArrowCode, leftArrowCode } from '../../consts';
 
 class Gallery extends Component {
@@ -12,6 +13,7 @@ class Gallery extends Component {
         currentSlides: PropTypes.arrayOf(PropTypes.object).isRequired,
         current: PropTypes.number.isRequired,
         isModalShown: PropTypes.bool.isRequired,
+        isLoading: PropTypes.bool.isRequired,
         openModal: PropTypes.func.isRequired,
         closeModal: PropTypes.func.isRequired,
         getSlides: PropTypes.func.isRequired,
@@ -65,6 +67,7 @@ class Gallery extends Component {
         const {
             current,
             isModalShown,
+            isLoading,
             openModal,
             closeModal,
             currentSlides,
@@ -83,6 +86,9 @@ class Gallery extends Component {
         }
 
         return <div className="Gallery">
+            { isLoading && <div className="Gallery__loader">
+                <Loader />
+            </div>}
             { isModalShown && <Modal
                 item={currentSlides[current]}
                 closeModal={closeModal}

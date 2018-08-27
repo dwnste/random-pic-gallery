@@ -129,6 +129,7 @@ class App extends Component {
             slides,
             current,
             isModalShown,
+            isLoading,
         } = this.state;
 
         return <div className="App">
@@ -138,6 +139,7 @@ class App extends Component {
                     current={current}
                     currentSlides={slides}
                     isModalShown={isModalShown}
+                    isLoading={isLoading}
                     openModal={this.openModal}
                     closeModal={this.closeModal}
                     getSlides={this.getSlides}
