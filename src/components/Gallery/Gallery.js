@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Controls from '../Controls/Controls';
 import Modal from '../Modal/Modal';
 import Slide from '../Slide/Slide';
+import { rightArrowCode, leftArrowCode } from '../../consts';
 
 class Gallery extends Component {
     static propTypes = {
@@ -20,6 +21,10 @@ class Gallery extends Component {
         onSlideSelect: PropTypes.func.isRequired,
     };
 
+    componentWillMount() {
+        document.addEventListener('keydown', this.handleArrowPress);
+    }
+
     componentDidMount() {
         const {
             getSlides,
@@ -30,6 +35,29 @@ class Gallery extends Component {
 
         if (!currentSlides.length) {
             getSlides(size).then(pushSlides);
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleArrowPress);
+    }
+
+    handleArrowPress = (event) => {
+        const {
+            size,
+            onPrevSlide,
+            onNextSlide,
+        } = this.props;
+
+        switch (event.keyCode) {
+        case leftArrowCode:
+            onPrevSlide();
+            break;
+        case rightArrowCode:
+            onNextSlide(size);
+            break;
+        default:
+            break;
         }
     }
 
@@ -47,6 +75,8 @@ class Gallery extends Component {
         } = this.props;
 
         const hasSlides = currentSlides.length > current + 1;
+        const prevSlide = current - 1;
+        const nextSlide = current + 1;
 
         if (!currentSlides.length) {
             return null;
@@ -57,12 +87,11 @@ class Gallery extends Component {
                 item={currentSlides[current]}
                 closeModal={closeModal}
                 openModal={openModal}
-                isModalShown={isModalShown}
             /> }
             <div className="Gallery__slides">
                 {current > 0 && <div className="Gallery__slide Gallery__slide-control">
                     <Slide
-                        slide={currentSlides[current - 1]}
+                        slide={currentSlides[prevSlide]}
                         onClick={onPrevSlide}
                     />
                 </div>}
@@ -74,7 +103,7 @@ class Gallery extends Component {
                 </div>
                 {hasSlides && <div className="Gallery__slide Gallery__slide-control">
                     <Slide
-                        slide={currentSlides[current + 1]}
+                        slide={currentSlides[nextSlide]}
                         onClick={() => onNextSlide(size)}
                     />
                 </div>}
