@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Controls.css';
-import { getFirstPhoto } from '../../utils';
+import { getFirstPhoto, findIndex } from '../../utils';
 
 const Controls = (props) => {
     const {
@@ -28,8 +28,8 @@ const Controls = (props) => {
         />
         {slides.map(slide => <div
             key={slide.id}
-            onClick={() => onSlideSelect(currentSlides.findIndex(item => item.id === slide.id))}
-            className={`Controls__image ${current === currentSlides.findIndex(item => item.id === slide.id) ? 'Controls__image-active' : ''}`}
+            onClick={() => onSlideSelect(findIndex(currentSlides, slide.id))}
+            className={`Controls__image ${current === findIndex(currentSlides, slide.id) && 'Controls__image-active'}`}
             style={{
                 backgroundImage: `url(${getFirstPhoto(slide.attachments)})`,
             }}
