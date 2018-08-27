@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Controls.css';
+import './styles.css';
 import { getFirstPhoto, findIndex } from '../../utils';
 
 const Controls = (props) => {

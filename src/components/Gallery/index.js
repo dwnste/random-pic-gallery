@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './Gallery.css';
+import './styles.css';
 import PropTypes from 'prop-types';
-import Controls from '../Controls/Controls';
-import Modal from '../Modal/Modal';
-import Slide from '../Slide/Slide';
+import Controls from '../Controls';
+import Modal from '../Modal';
+import Slide from '../Slide';
 import { rightArrowCode, leftArrowCode } from '../../consts';
 
 class Gallery extends Component {

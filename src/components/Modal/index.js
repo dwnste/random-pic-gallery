@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Modal.css';
+import './styles.css';
 import PropTypes from 'prop-types';
 import { escCode } from '../../consts';
 import { getFirstPhoto } from '../../utils';

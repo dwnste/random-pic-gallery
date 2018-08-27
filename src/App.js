@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Gallery from './components/Gallery/Gallery';
+import Gallery from './components/Gallery';
 import getPosts from './api/api';
 import { filterSlides, preloadSlides } from './utils';
 
