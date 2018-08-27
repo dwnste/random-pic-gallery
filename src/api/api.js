@@ -22,4 +22,4 @@ const getImages = (count = 10, offset = 0) => {
     return get(url).then(parseResponse);
 };
 
-export { getImages };
+export default getImages;
