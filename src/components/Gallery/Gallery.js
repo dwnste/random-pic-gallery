@@ -11,7 +11,8 @@ class Gallery extends Component {
         currentSlides: PropTypes.arrayOf(PropTypes.object).isRequired,
         current: PropTypes.number.isRequired,
         isModalShown: PropTypes.bool.isRequired,
-        toggleModal: PropTypes.func.isRequired,
+        openModal: PropTypes.func.isRequired,
+        closeModal: PropTypes.func.isRequired,
         getSlides: PropTypes.func.isRequired,
         pushSlides: PropTypes.func.isRequired,
         onNextSlide: PropTypes.func.isRequired,
@@ -36,7 +37,8 @@ class Gallery extends Component {
         const {
             current,
             isModalShown,
-            toggleModal,
+            openModal,
+            closeModal,
             currentSlides,
             onNextSlide,
             onPrevSlide,
@@ -53,8 +55,9 @@ class Gallery extends Component {
         return <div className="Gallery">
             { isModalShown && <Modal
                 item={currentSlides[current]}
+                closeModal={closeModal}
+                openModal={openModal}
                 isModalShown={isModalShown}
-                toggleModal={toggleModal}
             /> }
             <div className="Gallery__slides">
                 {current > 0 && <div className="Gallery__slide Gallery__slide-control">
@@ -66,7 +69,7 @@ class Gallery extends Component {
                 <div className="Gallery__slide Gallery__slide-current">
                     <Slide
                         slide={currentSlides[current]}
-                        onClick={toggleModal}
+                        onClick={openModal}
                     />
                 </div>
                 {hasSlides && <div className="Gallery__slide Gallery__slide-control">

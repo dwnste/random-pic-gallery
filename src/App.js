@@ -15,13 +15,17 @@ class App extends Component {
         isLoading: false,
     };
 
-    toggleModal = () => {
-        const { isModalShown } = this.state;
-
+    openModal = () => {
         this.setState({
-            isModalShown: !isModalShown,
+            isModalShown: true,
         });
-    };
+    }
+
+    closeModal = () => {
+        this.setState({
+            isModalShown: false,
+        });
+    }
 
     getSlides = (size, offset = 0, prevSlides = []) => getImages(size, offset)
         .then((res) => {
@@ -133,12 +137,13 @@ class App extends Component {
                     current={current}
                     currentSlides={images}
                     isModalShown={isModalShown}
+                    openModal={this.openModal}
+                    closeModal={this.closeModal}
                     getSlides={this.getSlides}
                     pushSlides={this.pushSlides}
                     onSlideSelect={this.onSlideSelect}
                     onNextSlide={this.onNextSlide}
                     onPrevSlide={this.onPrevSlide}
-                    toggleModal={this.toggleModal}
                 />
             </div>
         </div>;

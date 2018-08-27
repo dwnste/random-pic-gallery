@@ -5,8 +5,8 @@ import { getFirstPhoto } from '../../utils';
 
 class Modal extends Component {
     static propTypes = {
-        isModalShown: PropTypes.bool.isRequired,
-        toggleModal: PropTypes.func.isRequired,
+        openModal: PropTypes.func.isRequired,
+        closeModal: PropTypes.func.isRequired,
         item: PropTypes.shape({
             attachments: PropTypes.arrayOf(PropTypes.object),
         }).isRequired,
@@ -14,21 +14,26 @@ class Modal extends Component {
 
     componentDidMount() {
         document.addEventListener('click', this.handleClick);
+        document.addEventListener('keydown', this.handleEscPress);
     }
 
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClick);
+        document.removeEventListener('keydown', this.handleEscPress);
     }
 
     handleClick = (event) => {
-        const {
-            isModalShown,
-            toggleModal,
-        } = this.props;
+        const { closeModal } = this.props;
 
-        if (isModalShown) {
-            event.stopPropagation();
-            toggleModal();
+        event.stopPropagation();
+        closeModal();
+    }
+
+    handleEscPress = (event) => {
+        const { closeModal } = this.props;
+
+        if (event.keyCode === 27) {
+            closeModal();
         }
     }
 
