@@ -1,0 +1,52 @@
+.Controls {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 0;
+}
+
+.Controls__image {
+    margin: 0 5px;
+    height: 50px;
+    width: 50px;
+    opacity: 0.5;
+    transition: 300ms ease opacity;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Controls__image-active {
+    opacity: 1;
+    box-shadow: 0px 0px 0px 3px #777 inset;
+}
+
+.Controls__image:hover {
+    opacity: 1;
+}
+
+.Controls__left {
+    background-image: url("./left-arrow.svg");
+}
+
+.Controls__right {
+    background-image: url("./right-arrow.svg");
+}
+
+.Controls__left,
+.Controls__right {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-size: 100% auto;
+    background-position: center;
+    opacity: 0.4;
+    transition: 300ms ease-in-out opacity;
+}
+
+.Controls__right:hover,
+.Controls__left:hover {
+    opacity: 0.7;
+}

@@ -1,0 +1,35 @@
+.Modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1190px;
+    height: 700px;
+    background-color: #444;
+    background-position: center;
+    background-size: 100% auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.Modal__background {
+    filter: blur(30px);
+    display: block;
+    position: absolute;
+    height: 700px;
+    width: 1190px;
+    background-size: auto 100%;
+    background-position: center;
+    z-index: 1;
+}
+
+.Modal__image {
+    position: absolute;
+    width: auto;
+    height: 700px;
+    z-index: 2;
+}

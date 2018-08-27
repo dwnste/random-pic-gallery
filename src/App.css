@@ -1,0 +1,11 @@
+.App {
+    min-width: 1190px;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.App__gallery {
+    margin-top: 40px;
+}
