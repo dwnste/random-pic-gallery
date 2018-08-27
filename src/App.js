@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Gallery from './components/Gallery/Gallery';
-import { getImages } from './api/api';
+import getPosts from './api/api';
 import { filterSlides } from './utils';
 
 const gallerySize = 5;
@@ -27,7 +27,7 @@ class App extends Component {
         });
     }
 
-    getSlides = (size, offset = 0, prevSlides = []) => getImages(size, offset)
+    getSlides = (size, offset = 0, prevSlides = []) => getPosts(size, offset)
         .then((res) => {
             const { isLoading } = this.state;
 

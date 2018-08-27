@@ -10,7 +10,7 @@ const defaultParams = {
 
 const get = url => fetchJsonp(url).then(res => res.json());
 
-const getImages = (count = 10, offset = 0) => {
+const getPosts = (count = 10, offset = 0) => {
     const params = {
         ...defaultParams,
         count,
@@ -22,4 +22,4 @@ const getImages = (count = 10, offset = 0) => {
     return get(url).then(parseResponse);
 };
 
-export default getImages;
+export default getPosts;
