@@ -1,7 +1,7 @@
 import React from 'react';
 import './Slide.css';
 import PropTypes from 'prop-types';
-import { filterAttachments } from '../../utils';
+import { getFirstPhoto } from '../../utils';
 
 const Slide = (props) => {
     const {
@@ -13,7 +13,7 @@ const Slide = (props) => {
         className="Slide"
         onClick={onClick}
         style={{
-            backgroundImage: `url(${filterAttachments(slide.attachments)[0].photo.sizes[6].url})`,
+            backgroundImage: `url(${getFirstPhoto(slide.attachments)})`,
         }}
     />;
 };
