@@ -38,11 +38,9 @@ class Modal extends Component {
     }
 
     render() {
-        const {
-            item,
-        } = this.props;
+        const { item: { id, attachments } } = this.props;
 
-        const imageUrl = getFirstPhoto(item.attachments);
+        const imageUrl = getFirstPhoto(attachments);
 
         return <div className="Modal">
             <div
@@ -54,7 +52,7 @@ class Modal extends Component {
             <img
                 className="Modal__image"
                 src={imageUrl}
-                alt={item.id}
+                alt={id}
             />
         </div>;
     }

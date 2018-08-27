@@ -13,13 +13,9 @@ const Controls = (props) => {
         size,
     } = props;
 
-    let slides;
-
-    if (current < size - 1) {
-        slides = currentSlides.slice(0, size);
-    } else {
-        slides = currentSlides.slice(current - size + 2, current + 2);
-    }
+    const slides = current < size - 1
+        ? currentSlides.slice(0, size)
+        : currentSlides.slice(current - size + 2, current + 2);
 
     return <div className="Controls">
         <div
