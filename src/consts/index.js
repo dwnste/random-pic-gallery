@@ -1,6 +1,6 @@
 // VK related stuff
 const vkAPI = 'https://api.vk.com/method/wall.get';
-const version = '5.80';
+const version = '5.81';
 const groups = [
     '-71960446',
     '-69563163',
